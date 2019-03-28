@@ -11,10 +11,10 @@
         xhttp.onreadystatechange = function() {
             console.log(this)
             if (this.readyState === 4 && this.status === 200) {
-                    // console.log(this.responseText);
+                    console.log(this.responseText);
             }
         };
-        xhttp.open("GET", "https://jsonplaceholder.typicode.com/comments", true);
+        xhttp.open("GET", "http://localhost:7000/body", true);
         xhttp.send();
     }
     loadXMLDoc();
