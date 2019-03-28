@@ -41,6 +41,13 @@ class Player {
         this.y = this.y + 1;
         if(this.y > 520) {
             this.y = 520;
+            if (gameOver) {
+                isPaused = true;
+            }
+        }
+
+        if(this.y < 20) {
+            this.y = 20;
         }
 
 
