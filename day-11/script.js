@@ -129,7 +129,7 @@ level3Topic('camelCase', true);
 level4Topic(`myElement.style.backgroundColor = 'red'; // string value`, true);
 level2Topic('Listeners', true);
 level3Topic('myElement.addEventListener(event, callback);');
-level4Topic(`Events- 'click', 'mouseover', 'keyup', 'transitionend`);
+level4Topic(`Events- 'click', 'mouseover', 'keyup', 'transitionend', ...etc`, true);
 
 level1Topic('Built in Objects', true);
 level2Topic('Document');
