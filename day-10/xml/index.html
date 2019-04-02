@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function loadXMLDoc() {
+        const xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            console.log(this)
+            if (this.readyState === 4 && this.status === 200) {
+                    console.log(this.responseText);
+            }
+        };
+        xhttp.open("GET", "http://localhost:7000/body", true);
+        xhttp.send();
+    }
+    loadXMLDoc();
+</script>
+</body>
+</html>
