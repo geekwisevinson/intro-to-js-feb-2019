@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<style>
+    body {
+        display: flex;
+        justify-content: flex-end;
+    }
+    .nav-links {
+        font-size: 4em;
+        list-style: none;
+        display: flex;
+        justify-content: space-around;
+        width: 60%;
+        background: grey;
+    }
+
+    button {
+        display: none;
+    }
+
+    @media screen and (max-width:765px){
+        button {
+            display: inline-block;
+        }
+        .nav-links {
+
+            color: red;
+            flex-direction: column;
+        }
+        .nav-links.nav-closed {
+            position: absolute;
+            left: 200%;
+            width: 0%;
+            transform: translate(100%);
+        }
+        .nav-links.nav-active {
+            width: 60%;
+            transform: translate(0%);
+        }
+    }
+
+
+</style>
+
+
+<ul class="nav-links nav-closed">
+    <li>home</li>
+    <li>about</li>
+    <li>other</li>
+</ul>
+<button>
+    X
+</button>
+
+<script>
+    const nav = document.querySelector('.nav-links');
+    const button = document.querySelector('button');
+
+    window.addEventListener('resize', function(e) {
+        console.log('event', e.target.innerWidth);
+        if (e.target.innerWidth > 765) {
+            nav.classList.remove('nav-active');
+            nav.classList.add('nav-closed')
+        }
+    })
+    button.addEventListener('click', function() {
+        nav.classList.toggle('nav-closed');
+        nav.classList.toggle('nav-active')
+    })
+</script>
+</body>
+</html>
