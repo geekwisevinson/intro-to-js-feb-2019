@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>repl.it</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <style>
+        .conversation {
+            border: 1px solid black;
+            background-color : cyan;
+            padding: .5em;
+        }
+
+        body, body *{
+            font-size: 1.3em;
+        }
+    </style>
+</head>
+
+<body>
+<input type="text" /> <button>Submit</button>
+
+<div class="conversation">
+
+</div>
+
+
+<script>
+    const conversation = document.querySelector('.conversation');
+    const submit = document.querySelector('button');
+    const input = document.querySelector('input');
+
+    submit.addEventListener('click', function() {
+        const text = input.value;
+        talk(text);
+        genieResponse(text);
+    });
+
+
+    function talk(value) {
+        const elementNode = document.createElement('div');
+        elementNode.innerHTML = `<p>${value}</p>`;
+        conversation.appendChild(elementNode);
+    }
+
+    function genieResponse(text) {
+        const greetings = [
+            'hi ',
+            'welcome',
+            'hey',
+            'hello'
+        ];
+
+        const intro = ['my name is ', 'i am ', 'they call me '];
+
+        const newData = [
+            { response: "Sure", type: "positive" },
+            { response: "Definitely", type: "positive" },
+            { response: "You may rely on it", type: "positive" },
+            { response: "As I see it", type: "positive" },
+            { response: "Yes", type: "positive" },
+            { response: "Most Likely", type: "positive" },
+            { response: "Outlook good", type: "positive" },
+            { response: "Signs point to yes", type: "positive" },
+            { response: "Don’t count on it", type: "negative" },
+            { response: "My reply is no", type: "negative" },
+            { response: "My sources say no", type: "negative" },
+            { response: "Outlook not so good", type: "negative" },
+            { response: "Very doubtful", type: "negative" },
+            { response: "Reply hazy", type: "neutral" },
+            { response: "Try again", type: "neutral" },
+            { response: "Ask again later", type: "neutral" },
+            { response: "Better not tell you now", type: "neutral" },
+            { response: "Cannot predict now", type: "neutral" },
+            { response: "Concentrate and ask again", type: "neutral" }
+        ];
+        let responses = [
+            'try again later.',
+            'all signs point to yes',
+            'outlook not so good.'
+        ];
+        let isGreeting = false;
+
+        greetings.forEach( function (word){
+            if (text.includes(word)) {
+                isGreeting = true;
+            }
+        });
+
+        let isIntro = false;
+
+        intro.forEach( function (word){
+            if (text.includes(word)) {
+                isIntro = true;
+            }
+        });
+
+        const switchValue = isIntro ? 1 : isGreeting ? 2 : 3;
+        let answer;
+        switch (switchValue) {
+            case 1:
+                answer = 'hello, nice to meet you, ' + text.substr(text.indexOf('is ') + 3) ;
+                break;
+            case 2:
+                answer = 'Nice to meet you.';
+                break;
+            default:
+                answer = newData[Math.floor( Math.random() * newData.length -1 )].response;
+        }
+
+        talk(answer);
+    }
+
+</script>
+</body>
+
+</html>

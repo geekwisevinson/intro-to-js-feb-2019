@@ -1,78 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>repl.it</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <style>
+        .active {
+            color: green;
+            font-size: 50px;
+            transition: all 3s ease;
+        }
+        .small {
+            color: blue;
+            font-size: 12px;
+            transition: all 3s ease;
+        }
+    </style>
 </head>
+
 <body>
+<h1>Hello World</h1>
+<button class="click-button">Large </button>
+<button class="click-button secon">Small</button>
+<a href="about.html"> about </a>
+<script >
 
-<style>
-    body {
-        display: flex;
-        justify-content: flex-end;
-    }
-    .nav-links {
-        font-size: 4em;
-        list-style: none;
-        display: flex;
-        justify-content: space-around;
-        width: 60%;
-        background: grey;
-    }
+    // First I target the html elements then i store them in a const variable
+    // Since the button variable will always point to the same thing, I can make it a const ( it wont change )
+    const button = document.querySelector('.click-button');
+    // the fist example i use document.querySelector, it returns the first thing that matches.
+    // next I use the querySelectorAll it returns an array [ 0, 1, 2, ... ], it is 0 based so [1] is accessing the 2nd item.
+    const button2 = document.querySelectorAll('.click-button second')[1];
+    // here i just use querySelector to get one html element instead of an array of h1 elements.
+    const h1 = document.querySelector('h1');
+    // an html element is equivalent to the tag that is written in html.
 
-    button {
-        display: none;
-    }
+    // Action! this is our first action
+    button.addEventListener('click', function () {
+        // when we click the button now it will do the following
+        h1.classList.add('active');
+        h1.classList.remove('small');
+        // it added the active class and removed the small class
+    });
+    button2.addEventListener('click', function () {
+        // this is just to illustrate targeting an element within a function
+        document.querySelector('h1').classList.add('small');
+        document.querySelector('h1').classList.remove('active');
+        // this is just the reverse of the other function but attached to the button number 2
+    });
 
-    @media screen and (max-width:765px){
-        button {
-            display: inline-block;
-        }
-        .nav-links {
-
-            color: red;
-            flex-direction: column;
-        }
-        .nav-links.nav-closed {
-            position: absolute;
-            left: 200%;
-            width: 0%;
-            transform: translate(100%);
-        }
-        .nav-links.nav-active {
-            width: 60%;
-            transform: translate(0%);
-        }
-    }
-
-
-</style>
-
-
-<ul class="nav-links nav-closed">
-    <li>home</li>
-    <li>about</li>
-    <li>other</li>
-</ul>
-<button>
-    X
-</button>
-
-<script>
-    const nav = document.querySelector('.nav-links');
-    const button = document.querySelector('button');
-
-    window.addEventListener('resize', function(e) {
-        console.log('event', e.target.innerWidth);
-        if (e.target.innerWidth > 765) {
-            nav.classList.remove('nav-active');
-            nav.classList.add('nav-closed')
-        }
-    })
-    button.addEventListener('click', function() {
-        nav.classList.toggle('nav-closed');
-        nav.classList.toggle('nav-active')
-    })
+    // here is just a console.log(anything). This is a good friend. use the console. a lot.
+    console.log('button', button);
 </script>
 </body>
+
 </html>
